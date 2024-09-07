@@ -1,5 +1,5 @@
 
-void print_number(char *number) {
+void print_number(char *number, char *dict) {
 
 	// PRINT
 }
