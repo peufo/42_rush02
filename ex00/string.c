@@ -6,7 +6,7 @@
 /*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:31:58 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/07 18:55:57 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/07 21:31:19 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,29 @@ int	str_len(char *str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+int	is_space(char c)
+{
+	return (c == '\t'
+		|| c == '\n'
+		|| c == '\v'
+		|| c == '\f'
+		|| c == '\r'
+		|| c == ' ');
+}
+
+char	*str_dup(char *start, char *end)
+{
+	char	*dup;
+	char	*_dup;
+
+	dup = malloc(sizeof(*dup) * (end - start + 1));
+	if (!dup)
+		return (NULL);
+	_dup = dup;
+	while (start < end)
+		*(_dup++) = *(start++);
+	*_dup = '\0';
+	return (dup);
 }

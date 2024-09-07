@@ -6,11 +6,13 @@
 /*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:18:37 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/07 18:55:37 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/07 21:44:11 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dict.h"
+#include <stdio.h>
+
 
 #define BUFFER_SIZE 1000
 
@@ -18,6 +20,8 @@ t_label	*read_dict(char *dict_name)
 {
 	int		fd;
 	char	*content;
+	int		nb_lines;
+	t_label	*dict;
 
 	fd = open(dict_name, O_RDONLY);
 	if (fd == -1)
@@ -27,7 +31,54 @@ t_label	*read_dict(char *dict_name)
 	}
 	content = read_file(fd);
 	close(fd);
-	return (NULL);
+
+	nb_lines = get_nb_lines(content);
+	dict = malloc(sizeof(*dict) * (nb_lines + 1));
+	add_label_to_dict(content, dict, 0);
+	dict[nb_lines].key = NULL;
+	dict[nb_lines].label = NULL;
+
+
+	int i = 0;
+	while (dict[i].key)
+	{
+		printf("%d ->\"%s\"\n", i, dict[i].key);
+		printf("%d -> \"%s\"\n\n", i, dict[i].label);
+		i++;
+	}
+
+	return (dict);
+}
+
+void	add_label_to_dict(char *str, t_label *dict, int index)
+{
+	char	*end;
+
+	if (!*str)
+		return ;
+	end = str;
+	while (*end && !(is_space(*end) || *end == ':') )
+		end++;
+	dict[index].key = str_dup(str, end);
+	str = end;
+	while (*str && (is_space(*str) || *str == ':'))
+		str++;
+	end = str;
+	while (*end && *end != '\n')
+		end++;
+	dict[index].label = str_dup(str, end);
+	add_label_to_dict(end + 1, dict, index + 1);
+}
+
+int	get_nb_lines(char *str)
+{
+	int	count;
+
+	count = 0;
+	while (*str)
+		if (*(str++) == '\n')
+			count++;
+	return (count);
 }
 
 char	*read_file(int fd)
