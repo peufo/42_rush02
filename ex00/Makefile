@@ -4,7 +4,7 @@ CFILES = *.c
 
 OFILES = $(CFILES:.c=.o)
 
-CFLAGS += -fsanitize=address -Wall -Wextra -Werror
+CFLAGS += -g -fsanitize=address -Wall -Wextra -Werror
 
 CUR_DIR = $(shell pwd)
 

@@ -6,43 +6,51 @@
 /*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:18:37 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/07 17:56:05 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/07 18:55:37 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dict.h"
 
-#include <stdio.h>
+#define BUFFER_SIZE 1000
 
-t_label	*read_dict(char *dict_name) {
+t_label	*read_dict(char *dict_name)
+{
 	int		fd;
 	char	*content;
 
 	fd = open(dict_name, O_RDONLY);
 	if (fd == -1)
 	{
-		write(1, "Not able to open the file.", sizeof("Not able to open the file."));
+		write(1, "Not able to open the file.", 27);
 		return (NULL);
 	}
 	content = read_file(fd);
 	close(fd);
-	printf("%s", content);
 	return (NULL);
 }
 
 char	*read_file(int fd)
 {
-	int		nb_read;
-	char	stream[100];
+	char	buffer[BUFFER_SIZE];
 	char	*content;
+	char	*next_content;
+	int		buffer_len;
+	int		i;
 
-	nb_read = 1;
-	while (nb_read != 0)
+	i = 0;
+	content = malloc(sizeof(*content));
+	next_content = content;
+	if (!content)
+		return (NULL);
+	content[0] = '\0';
+	buffer_len = 1;
+	while (buffer_len != 0)
 	{
-		nb_read = read(fd, stream, 100);
-		content = str_cat(content, stream);
+		buffer_len = read(fd, buffer, BUFFER_SIZE);
+		next_content = str_cat(content, buffer, buffer_len);
+		free(content);
+		content = next_content;
 	}
 	return (content);
 }
-
-
