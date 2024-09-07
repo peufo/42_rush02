@@ -6,13 +6,12 @@
 /*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:18:37 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/07 21:44:11 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/07 21:46:07 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dict.h"
 #include <stdio.h>
-
 
 #define BUFFER_SIZE 1000
 
@@ -31,22 +30,11 @@ t_label	*read_dict(char *dict_name)
 	}
 	content = read_file(fd);
 	close(fd);
-
 	nb_lines = get_nb_lines(content);
 	dict = malloc(sizeof(*dict) * (nb_lines + 1));
 	add_label_to_dict(content, dict, 0);
 	dict[nb_lines].key = NULL;
 	dict[nb_lines].label = NULL;
-
-
-	int i = 0;
-	while (dict[i].key)
-	{
-		printf("%d ->\"%s\"\n", i, dict[i].key);
-		printf("%d -> \"%s\"\n\n", i, dict[i].label);
-		i++;
-	}
-
 	return (dict);
 }
 
@@ -57,7 +45,7 @@ void	add_label_to_dict(char *str, t_label *dict, int index)
 	if (!*str)
 		return ;
 	end = str;
-	while (*end && !(is_space(*end) || *end == ':') )
+	while (*end && !(is_space(*end) || *end == ':'))
 		end++;
 	dict[index].key = str_dup(str, end);
 	str = end;
