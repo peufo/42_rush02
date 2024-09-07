@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_number.h                                     :+:      :+:    :+:   */
+/*   string.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/07 16:43:12 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/07 17:21:26 by jvoisard         ###   ########.fr       */
+/*   Created: 2024/09/07 17:30:42 by jvoisard          #+#    #+#             */
+/*   Updated: 2024/09/07 17:32:19 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINT_NUMBER_H
-# define PRINT_NUMBER_H
-
-void	print_number(char *number, char *dict_name);
-typedef struct s_label	t_label;
-struct	s_label
-{
-	char	*key;
-	char	*label;
-};
-
+#ifndef STRING_H
+# define STRING_H
+# include <stdlib.h>
+char	*str_cat(char *str, char *str_add);
+int		str_len(char *str);
 #endif

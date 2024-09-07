@@ -1,43 +1,48 @@
-#include "print_number.h"
-#include <sys/fcntl.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dict.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/07 17:18:37 by jvoisard          #+#    #+#             */
+/*   Updated: 2024/09/07 17:56:05 by jvoisard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "dict.h"
+
+#include <stdio.h>
 
 t_label	*read_dict(char *dict_name) {
-	char	*buff;
-	int fd;
-	char c;
-	int nb_read;
-	int count;
-	int	index;
+	int		fd;
+	char	*content;
 
-	index = 0;
 	fd = open(dict_name, O_RDONLY);
 	if (fd == -1)
 	{
 		write(1, "Not able to open the file.", sizeof("Not able to open the file."));
-		return (0);
+		return (NULL);
 	}
-	nb_read = 1;
-	count = 0;
-	c = '\0';
-	while (nb_read != 0)
-	{
-		nb_read = read(fd, &c, 1);
-		count++;
-	}
+	content = read_file(fd);
 	close(fd);
-	fd = open(dict_name, O_RDONLY);
-	buff = malloc(sizeof(char) * count);
-	while (nb_read != 0)
-	{
-		nb_read = read(fd, buff, count);
-		if (nb_read == -1)
-		{
-			write(1, "Read error!\n", sizeof("Read error\n"));
-			return (1);
-		}
-		buff[count] = '\0';
-	}
-	write(1, buff, count);
-	close(fd);
-	return (0);
+	printf("%s", content);
+	return (NULL);
 }
+
+char	*read_file(int fd)
+{
+	int		nb_read;
+	char	stream[100];
+	char	*content;
+
+	nb_read = 1;
+	while (nb_read != 0)
+	{
+		nb_read = read(fd, stream, 100);
+		content = str_cat(content, stream);
+	}
+	return (content);
+}
+
+

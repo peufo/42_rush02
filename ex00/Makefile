@@ -1,14 +1,14 @@
 NAME = rush-02
 
-CFILES = open_dict.c
+CFILES = *.c
 
 OFILES = $(CFILES:.c=.o)
 
-CFLAGS += -Wall -Wextra -Werror
+CFLAGS += -fsanitize=address -Wall -Wextra -Werror
 
 CUR_DIR = $(shell pwd)
 
-all: $(NAME) clean
+all: fclean $(NAME)
 
 $(NAME):
 	cc $(CFLAGS) $(CFILES) -o $(NAME)
@@ -17,7 +17,7 @@ clean:
 	rm -f $(OFILES)
 
 fclean:
-	clean rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean $(NAME)
 
