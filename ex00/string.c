@@ -6,7 +6,7 @@
 /*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:31:58 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/07 21:31:19 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/07 22:04:58 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,14 @@ char	*str_dup(char *start, char *end)
 		*(_dup++) = *(start++);
 	*_dup = '\0';
 	return (dup);
+}
+
+int	str_cmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }
