@@ -6,7 +6,7 @@
 /*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:59:30 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/07 16:47:45 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/07 16:59:38 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	main(int ac, char **av)
 		print_number(av[1], "numbers.dict");
 		return (0);
 	}
-	print_number(av[1], av[2]);
+	print_number(av[2], av[1]);
 	return (0);
 }

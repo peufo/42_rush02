@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_number.c                                     :+:      :+:    :+:   */
+/*   dict.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/07 17:10:15 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/07 17:10:28 by jvoisard         ###   ########.fr       */
+/*   Created: 2024/09/07 17:02:07 by jvoisard          #+#    #+#             */
+/*   Updated: 2024/09/07 17:11:00 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "print_number.h"
-#include "dict.h"
+#ifndef DICT_H
+# define DICT_H
+# include "print_number.h"
 
-void	print_number(char *number, char *dict_name)
-{
-	read_dict(dict_name);
-}
+t_label	*read_dict(char *dict_name);
+
+#endif
