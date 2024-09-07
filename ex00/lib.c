@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_number.h                                     :+:      :+:    :+:   */
+/*   lib.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/07 16:43:12 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/08 00:14:55 by jvoisard         ###   ########.fr       */
+/*   Created: 2024/09/07 22:39:48 by jvoisard          #+#    #+#             */
+/*   Updated: 2024/09/07 23:06:27 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINT_NUMBER_H
-# define PRINT_NUMBER_H
-# include "lib.h"
+#include "lib.h"
 
-typedef struct s_label	t_label;
-struct	s_label
+void	put_str(char *str)
 {
-	char	*key;
-	char	*label;
-};
-void	print_number(char *number, char *dict_name);
-void	print_9(t_label *labels, char *number);
-void	print_19(t_label *labels, char *number);
-void	print_99(t_label *labels, char *number);
-char	*get_label(t_label	*labels, char *key);
+	while (*str)
+		write(1, str++, 1);
+}
 
-#endif
+int	is_space(char c)
+{
+	return (c == '\t'
+		|| c == '\n'
+		|| c == '\v'
+		|| c == '\f'
+		|| c == '\r'
+		|| c == ' ');
+}

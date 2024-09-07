@@ -6,7 +6,7 @@
 /*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:31:58 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/07 22:04:58 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/07 23:15:37 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,29 +44,19 @@ int	str_len(char *str)
 	return (i);
 }
 
-int	is_space(char c)
+char	*str_cut(char *start, char *end)
 {
-	return (c == '\t'
-		|| c == '\n'
-		|| c == '\v'
-		|| c == '\f'
-		|| c == '\r'
-		|| c == ' ');
-}
+	char	*cut;
+	char	*_cut;
 
-char	*str_dup(char *start, char *end)
-{
-	char	*dup;
-	char	*_dup;
-
-	dup = malloc(sizeof(*dup) * (end - start + 1));
-	if (!dup)
+	cut = malloc(sizeof(*cut) * (end - start + 1));
+	if (!cut)
 		return (NULL);
-	_dup = dup;
+	_cut = cut;
 	while (start < end)
-		*(_dup++) = *(start++);
-	*_dup = '\0';
-	return (dup);
+		*(_cut++) = *(start++);
+	*_cut = '\0';
+	return (cut);
 }
 
 int	str_cmp(char *s1, char *s2)
@@ -77,4 +67,19 @@ int	str_cmp(char *s1, char *s2)
 	while (s1[i] && s1[i] == s2[i])
 		i++;
 	return (s1[i] - s2[i]);
+}
+
+char	*str_dup(char *str)
+{
+	char	*dup;
+	char	*_dup;
+
+	dup = malloc(sizeof(*dup) * (str_len(str) + 1));
+	if (!dup)
+		return (NULL);
+	_dup = dup;
+	while (*str)
+		*(_dup++) = *(str++);
+	*_dup = '\0';
+	return (dup);
 }

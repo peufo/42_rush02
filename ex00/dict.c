@@ -6,7 +6,7 @@
 /*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:18:37 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/07 21:46:07 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/07 23:07:04 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ void	add_label_to_dict(char *str, t_label *dict, int index)
 	end = str;
 	while (*end && !(is_space(*end) || *end == ':'))
 		end++;
-	dict[index].key = str_dup(str, end);
+	dict[index].key = str_cut(str, end);
 	str = end;
 	while (*str && (is_space(*str) || *str == ':'))
 		str++;
 	end = str;
 	while (*end && *end != '\n')
 		end++;
-	dict[index].label = str_dup(str, end);
+	dict[index].label = str_cut(str, end);
 	add_label_to_dict(end + 1, dict, index + 1);
 }
 
