@@ -6,7 +6,7 @@
 /*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:59:30 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/07 18:55:44 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/07 21:03:29 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	main(int ac, char **av)
 	}
 	if (ac == 2)
 	{
-		if (av[1] < 0)
+		if (av[1][0] == '-')
 		{
 			write(1, "Error\n", 6);
 		}
 		print_number(av[1], "numbers.dict");
 		return (0);
 	}
-	if (av[2] < 0)
+	if (av[2][0] == '-')
 	{
 		write(1, "Error\n", 6);
 		return (1);
