@@ -22,8 +22,17 @@ int	main(int ac, char **av)
 	}
 	if (ac == 2)
 	{
+		if (av[1] < 0)
+		{
+			write(1, "Error\n", 6);
+		}
 		print_number(av[1], "numbers.dict");
 		return (0);
+	}
+	if (av[2] < 0)
+	{
+		write(1, "Error\n", 6);
+		return (1);
 	}
 	print_number(av[2], av[1]);
 	return (0);

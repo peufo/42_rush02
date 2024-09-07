@@ -40,9 +40,9 @@ char	*read_file(int fd)
 
 	i = 0;
 	content = malloc(sizeof(*content));
-	next_content = content;
 	if (!content)
 		return (NULL);
+	next_content = content;
 	content[0] = '\0';
 	buffer_len = 1;
 	while (buffer_len != 0)
