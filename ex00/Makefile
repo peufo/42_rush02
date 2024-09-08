@@ -1,6 +1,11 @@
 NAME = rush-02
 
-CFILES = *.c
+CFILES = srcs/dict.c \
+			srcs/label.c \
+			srcs/lib.c \
+			srcs/main.c \
+			srcs/print_number.c \
+			srcs/string.c \
 
 OFILES = $(CFILES:.c=.o)
 
@@ -9,10 +14,10 @@ CFLAGS += -g -fsanitize=address -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OFILES)
-	cc $(CFLAGS) -o $(NAME) $(OFILES)
+	cc $(CFLAGS) -o $(NAME) $^	
 
-$(OFILES):
-	cc $(CFLAGS) -c $(CFILES)	
+%.o: %.c
+	cc $(CFLAGS) -o $@ -c $<
 
 clean:
 	rm -f $(OFILES)
