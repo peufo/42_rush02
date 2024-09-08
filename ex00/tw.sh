@@ -29,11 +29,14 @@ watch() {
 				./rush-02 101
 				'
 
-				echo "\n\nnombre 110"
-				./rush-02 110
-
-				echo "\n\nemoji 110"
-				./rush-02 emoji.dict 110
+				echo "\n\nmini 0"
+				./rush-02 mini.dict 0
+				echo "\n\nnormal 1"
+				./rush-02 1
+				echo "\n\nmini 1"
+				./rush-02 mini.dict 1
+				echo "\n\nmini 2"
+				./rush-02 mini.dict 2
 
 				: '
 				echo "\n\nnombre 1 222 999"

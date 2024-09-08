@@ -6,7 +6,7 @@
 /*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:18:37 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/08 21:16:55 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/08 21:27:34 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	add_label_to_dict(char *str, t_label *dict, int index)
 
 	if (!*str)
 		return ;
+	while (*str == '\n')
+		str++;
 	end = str;
 	while (*end && !(is_space(*end) || *end == ':'))
 		end++;

@@ -6,7 +6,7 @@
 /*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 22:39:48 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/08 20:49:32 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/08 21:23:39 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	put_str(char *str)
 {
+	if (!str)
+		return ;
 	while (*str)
 		write(1, str++, 1);
 }
