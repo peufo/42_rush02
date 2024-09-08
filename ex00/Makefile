@@ -6,9 +6,7 @@ OFILES = $(CFILES:.c=.o)
 
 CFLAGS += -g -fsanitize=address -Wall -Wextra -Werror
 
-LDFLAGS = $(CFLAGS)
-
-all: $(NAME) clear
+all: $(NAME)
 
 $(NAME): $(OFILES)
 	cc $(CFLAGS) -o $(NAME) $(OFILES)
