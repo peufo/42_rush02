@@ -6,7 +6,7 @@
 /*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 22:40:05 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/07 23:06:23 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/08 20:26:04 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 
 void	put_str(char *str);
 int		is_space(char c);
+int		is_entrie(char *str);
 
 #endif

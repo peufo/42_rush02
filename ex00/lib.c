@@ -6,7 +6,7 @@
 /*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 22:39:48 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/07 23:06:27 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/08 20:49:32 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,21 @@ int	is_space(char c)
 		|| c == '\f'
 		|| c == '\r'
 		|| c == ' ');
+}
+
+int	is_entrie(char *str)
+{
+	if (!*str)
+		return (0);
+	while (!is_space(*str) && *str != ':')
+		str++;
+	while (is_space(*str))
+		str++;
+	if (*(str++) != ':')
+		return (0);
+	while (is_space(*str) && *str != '\n')
+		str++;
+	if (*str == '\n')
+		return (0);
+	return (1);
 }

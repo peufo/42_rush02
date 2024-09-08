@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dict.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qjacquet <qjacquet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:18:37 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/08 19:05:31 by qjacquet         ###   ########.fr       */
+/*   Updated: 2024/09/08 21:16:55 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dict.h"
-#include <stdio.h>
 
 #define BUFFER_SIZE 1000
 
@@ -19,7 +18,7 @@ t_label	*read_dict(char *dict_name)
 {
 	int		fd;
 	char	*content;
-	int		nb_lines;
+	int		nb_entries;
 	t_label	*dict;
 
 	fd = open(dict_name, O_RDONLY);
@@ -30,14 +29,16 @@ t_label	*read_dict(char *dict_name)
 	}
 	content = read_file(fd);
 	close(fd);
-	nb_lines = get_nb_lines(content);
-	dict = malloc(sizeof(*dict) * (nb_lines + 1));
+	nb_entries = get_nb_entries(content);
+	if (nb_entries == -1)
+		return (NULL);
+	dict = malloc(sizeof(*dict) * (nb_entries + 1));
 	if (!dict)
 		return (NULL);
 	add_label_to_dict(content, dict, 0);
 	free(content);
-	dict[nb_lines].key = NULL;
-	dict[nb_lines].label = NULL;
+	dict[nb_entries].key = NULL;
+	dict[nb_entries].label = NULL;
 	return (dict);
 }
 
@@ -76,14 +77,23 @@ void	add_label_to_dict(char *str, t_label *dict, int index)
 	add_label_to_dict(end + 1, dict, index + 1);
 }
 
-int	get_nb_lines(char *str)
+int	get_nb_entries(char *str)
 {
 	int	count;
 
 	count = 0;
 	while (*str)
-		if (*(str++) == '\n')
+	{
+		while (*str == '\n')
+			str++;
+		if (is_entrie(str))
 			count++;
+		else
+			return (-1);
+		while (*str != '\n')
+			str++;
+		str++;
+	}
 	return (count);
 }
 

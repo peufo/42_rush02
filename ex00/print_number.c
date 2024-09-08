@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_number.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qjacquet <qjacquet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:10:15 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/08 19:15:26 by qjacquet         ###   ########.fr       */
+/*   Updated: 2024/09/08 21:17:19 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	print_number(char *number, char *dict_name)
 	int		len;
 
 	labels = read_dict(dict_name);
+	if (!labels)
+	{
+		write(1, "Dict Error\n", 11);
+		return ;
+	}
 	len = str_len(number);
 	if ((len % 3) == 1)
 		print_n(labels, number);
