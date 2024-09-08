@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_number.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qjacquet <qjacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:10:15 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/08 02:04:13 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/08 17:31:25 by qjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,20 @@ void	print_number(char *number, char *dict_name)
 		print_nnn(labels, number);
 		number += 2;
 	}
-	len = str_len(number);
-	if (len < 4)
-		return ;
-	write(1, " ", 1);
-	put_str(get_label(labels, number));
-	write(1, " ", 1);
-	print_next(labels, number + 1);
+	print_next(labels, number);
 }
 
 void	print_next(t_label *labels, char *number)
 {
-	if (!*number)
+	if (str_len(number) < 4)
 		return ;
-	print_nnn(labels, number);
-	if (!*(number + 3))
-		return ;
+	if (*number != '0')
+	{
+		write(1, " ", 1);
+		put_str(get_label(labels, number));
+	}
 	write(1, " ", 1);
-	put_str(get_label(labels, number));
-	write(1, " ", 1);
+	print_nnn(labels, number + 1);
 	print_next(labels, number + 3);
 }
 
@@ -71,7 +66,8 @@ void	print_nn(t_label *labels, char *number)
 
 	if (*number == '0')
 	{
-		print_n(labels, number + 1);
+		if (*(number + 1) != '0')
+			print_n(labels, number + 1);
 		return ;
 	}
 	nn = str_cut(number, number + 2);
@@ -99,6 +95,7 @@ void	print_nnn(t_label *labels, char *number)
 	nnn = str_cut(number, number + 3);
 	put_str(get_label(labels, nnn));
 	free(nnn);
+
 	write(1, " ", 1);
 	print_nn(labels, number + 1);
 	return ;
