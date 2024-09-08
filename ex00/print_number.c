@@ -6,7 +6,7 @@
 /*   By: qjacquet <qjacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:10:15 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/08 18:14:57 by qjacquet         ###   ########.fr       */
+/*   Updated: 2024/09/08 19:04:15 by qjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	print_number(char *number, char *dict_name)
 		number += 2;
 	}
 	print_next(labels, number);
+	free_dict(labels);
 }
 
 void	print_next(t_label *labels, char *number)
@@ -58,6 +59,7 @@ void	print_n(t_label *labels, char *number)
 		return ;
 	n = str_cut(number, number + 1);
 	put_str(get_label(labels, n));
+	free(n);
 }
 
 void	print_nn(t_label *labels, char *number)

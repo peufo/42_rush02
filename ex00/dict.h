@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dict.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qjacquet <qjacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:02:07 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/07 21:39:07 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/08 19:02:41 by qjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ t_label	*read_dict(char *dict_name);
 char	*read_file(int fd);
 int		get_nb_lines(char *str);
 void	add_label_to_dict(char *str, t_label *dict, int index);
+void	free_dict(t_label	*dict);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dict.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qjacquet <qjacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:18:37 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/07 23:07:04 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/08 19:05:31 by qjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,28 @@ t_label	*read_dict(char *dict_name)
 	close(fd);
 	nb_lines = get_nb_lines(content);
 	dict = malloc(sizeof(*dict) * (nb_lines + 1));
+	if (!dict)
+		return (NULL);
 	add_label_to_dict(content, dict, 0);
+	free(content);
 	dict[nb_lines].key = NULL;
 	dict[nb_lines].label = NULL;
 	return (dict);
+}
+
+void	free_dict(t_label	*dict)
+{
+	int	i;
+
+	i = 0;
+	while (dict[i].key)
+	{
+		free(dict[i].key);
+		free(dict[i].label);
+		i++;
+	}
+	free(dict);
+	return ;
 }
 
 void	add_label_to_dict(char *str, t_label *dict, int index)
