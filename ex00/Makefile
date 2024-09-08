@@ -6,19 +6,22 @@ OFILES = $(CFILES:.c=.o)
 
 CFLAGS += -g -fsanitize=address -Wall -Wextra -Werror
 
-CUR_DIR = $(shell pwd)
+LDFLAGS = $(CFLAGS)
 
-all: fclean $(NAME)
+all: $(NAME) clear
 
-$(NAME):
-	cc $(CFLAGS) $(CFILES) -o $(NAME)
+$(NAME): $(OFILES)
+	cc $(CFLAGS) -o $(NAME) $(OFILES)
+
+$(OFILES):
+	cc $(CFLAGS) -c $(CFILES)	
 
 clean:
 	rm -f $(OFILES)
 
-fclean:
+fclean: clean
 	rm -f $(NAME)
 
-re: fclean $(NAME)
+re: fclean all
 
 .PHONY: all clean fclean re
