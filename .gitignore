@@ -1,3 +1,4 @@
 rush-02
 *.dSYM
 .DS_Store
+*.o
