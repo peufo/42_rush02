@@ -6,7 +6,7 @@
 /*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:10:15 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/08 01:39:44 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/08 02:02:56 by jvoisard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,42 @@ void	print_number(char *number, char *dict_name)
 
 	labels = read_dict(dict_name);
 	len = str_len(number);
-	if (len == 1)
+
+	if ((len % 3) == 1)
 		print_n(labels, number);
-	else if (len == 2)
+	else if ((len % 3) == 2)
+	{
 		print_nn(labels, number);
-	else
+		number++;
+	}
+	else if ((len % 3) == 0)
+	{
 		print_nnn(labels, number);
+		number += 2;
+	}
+
+	len = str_len(number);
+	if (len < 4)
+		return ;
+	write(1, " ", 1);
+	put_str(get_label(labels, number));
+	write(1, " ", 1);
+	print_next(labels, number + 1);
+
+
+}
+
+void	print_next(t_label *labels, char *number)
+{
+	if (!*number)
+		return ;
+	print_nnn(labels, number);
+	if (!*(number + 3))
+		return ;
+	write(1, " ", 1);
+	put_str(get_label(labels, number));
+	write(1, " ", 1);
+	print_next(labels, number + 3);
 }
 
 void	print_n(t_label *labels, char *number)
