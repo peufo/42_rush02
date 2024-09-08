@@ -6,7 +6,7 @@
 /*   By: qjacquet <qjacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:10:15 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/08 17:31:25 by qjacquet         ###   ########.fr       */
+/*   Updated: 2024/09/08 18:14:57 by qjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void	print_nnn(t_label *labels, char *number)
 	nnn = str_cut(number, number + 3);
 	put_str(get_label(labels, nnn));
 	free(nnn);
-
 	write(1, " ", 1);
 	print_nn(labels, number + 1);
 	return ;

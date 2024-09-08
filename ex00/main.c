@@ -3,37 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvoisard <jvoisard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qjacquet <qjacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:59:30 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/07 21:03:29 by jvoisard         ###   ########.fr       */
+/*   Updated: 2024/09/08 18:51:13 by qjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "print_number.h"
 
+int	is_valid_arg(int ac, char **av);
+
 int	main(int ac, char **av)
 {
-	if (ac != 2 && ac != 3)
+	if (!is_valid_arg(ac, av))
 	{
 		write(1, "Error\n", 6);
 		return (1);
 	}
 	if (ac == 2)
-	{
-		if (av[1][0] == '-')
-		{
-			write(1, "Error\n", 6);
-		}
 		print_number(av[1], "numbers.dict");
-		return (0);
-	}
-	if (av[2][0] == '-')
-	{
-		write(1, "Error\n", 6);
-		return (1);
-	}
-	print_number(av[2], av[1]);
+	else
+		print_number(av[2], av[1]);
 	return (0);
+}
+
+int	is_valid_arg(int ac, char **av)
+{
+	char	*number;
+
+	if (ac != 2 && ac != 3)
+		return (0);
+	if (ac == 2)
+		number = av[1];
+	else
+		number = av[2];
+	if (*number == '-')
+		return (0);
+	if (str_len(number) > 39)
+		return (0);
+	return (1);
 }

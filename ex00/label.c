@@ -6,7 +6,7 @@
 /*   By: qjacquet <qjacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 00:17:14 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/09/08 17:02:06 by qjacquet         ###   ########.fr       */
+/*   Updated: 2024/09/08 18:14:20 by qjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ char	*get_label(t_label	*labels, char *key)
 	_key = parse_key(key);
 	if (!_key)
 		return (NULL);
-	//printf("\n\nkey:%s\n", key);
-	//printf("_key:%s\n\n", _key);
-
 	while (*labels->key)
 	{
 		if (str_cmp(labels->key, _key) == 0)
